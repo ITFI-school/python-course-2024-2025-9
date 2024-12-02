@@ -1,0 +1,16 @@
+# Shell-скрипт для ответа на вопрос со слайда 18
+# см. также https://pythonworld.ru/tipy-dannyx-v-python/chisla-int-float-complex.html
+
+>>> int("11", base=2)
+3
+>>> bin(12)
+'0b1100'
+>>> bin(12)[2:]
+'1100'
+>>> (1024).to_bytes(2, byteorder='big')
+b'\x04\x00'
+>>> hex(19)
+'0x13'
+>>> 0b10011
+19
+>>> 
