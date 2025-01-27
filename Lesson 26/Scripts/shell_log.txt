@@ -1,0 +1,155 @@
+Python 3.9.1 (v3.9.1:1e5d33e9b9, Dec  7 2020, 12:10:52) 
+[Clang 6.0 (clang-600.0.57)] on darwin
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> import openpyxl, os
+>>> os.getcwd()
+'/Users/sl/Documents'
+>>> 
+>>> os.chdir("/Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts")
+>>> 
+>>> wb = openpyxl.load_workbook("example.xlsx")
+>>> type(wb)
+<class 'openpyxl.workbook.workbook.Workbook'>
+>>> 
+>>> wb.sheetnames
+['Sheet1', 'Sheet2', 'Sheet3']
+>>> wb["Sheet1"]
+<Worksheet "Sheet1">
+>>> sheet3 = wb["Sheet3"]
+>>> type(sheet3)
+<class 'openpyxl.worksheet.worksheet.Worksheet'>
+>>> sheet3.title
+'Sheet3'
+>>> active_sheet = wb.active
+>>> active_sheet
+<Worksheet "Sheet1">
+>>> 
+>>> active_sheet["A1"]
+<Cell 'Sheet1'.A1>
+>>> active_sheet["A1"].value
+datetime.datetime(2015, 4, 5, 13, 34, 2)
+>>> 
+>>> cell = active_sheet["B1"]
+>>> cell.value
+'Apples'
+>>> "Строка " + str(cell.row) + ", Столбец " + str(cell.column) + ": " + cell.value
+'Строка 1, Столбец 2: Apples'
+>>> 
+>>> cell.coordinate
+'B1'
+>>> active_sheet["C1"].value
+73
+>>> 
+>>> active_sheet.cell(row=1, column=2)
+<Cell 'Sheet1'.B1>
+>>> active_sheet.cell(row=1, column=2).value
+'Apples'
+>>> 
+>>> for i in range(1, 8, 2):
+	print(i, active_sheet.cell(row=i, column=2).value)
+
+	
+1 Apples
+3 Pears
+5 Apples
+7 Strawberries
+>>> 
+>>> tuple(active_sheet['A1':"C3"])
+((<Cell 'Sheet1'.A1>, <Cell 'Sheet1'.B1>, <Cell 'Sheet1'.C1>), (<Cell 'Sheet1'.A2>, <Cell 'Sheet1'.B2>, <Cell 'Sheet1'.C2>), (<Cell 'Sheet1'.A3>, <Cell 'Sheet1'.B3>, <Cell 'Sheet1'.C3>))
+>>> 
+>>> for row_of_cells in active_sheet['A1':"C3"]:
+	for cell in row_of_cells:
+		print(cell.coordinate, cell.value)
+	print("--- END OF THE ROW ---")
+
+	
+A1 2015-04-05 13:34:02
+B1 Apples
+C1 73
+--- END OF THE ROW ---
+A2 2015-04-05 03:41:23
+B2 Cherries
+C2 85
+--- END OF THE ROW ---
+A3 2015-04-06 12:46:51
+B3 Pears
+C3 14
+--- END OF THE ROW ---
+>>> 
+>>> wb_new = openpyxl.Workbook()
+>>> wb_new
+<openpyxl.workbook.workbook.Workbook object at 0x7fea903d6a00>
+>>> wb_new.sheetnames
+['Sheet']
+>>> sheet = wb_new.active
+>>> sheet.title
+'Sheet'
+>>> sheet.title = "Spam Spam Spam"
+>>> wb_new.sheetnames
+['Spam Spam Spam']
+>>> 
+>>> wb = openpyxl.Workbook()
+>>> wb.sheetnames
+['Sheet']
+>>> wb.create_sheet()
+<Worksheet "Sheet1">
+>>> wb.sheetnames
+['Sheet', 'Sheet1']
+>>> wb.create_sheet(index=0, title="Первый лист")
+<Worksheet "Первый лист">
+>>> wb.sheetnames
+['Первый лист', 'Sheet', 'Sheet1']
+>>> wb.create_sheet(index=2, title="Средний лист")
+<Worksheet "Средний лист">
+>>> wb.sheetnames
+['Первый лист', 'Sheet', 'Средний лист', 'Sheet1']
+>>> 
+>>> wb.remove(wb["Средний лист"])
+>>> wb.remove(wb["Sheet1"])
+>>> wb.sheetnames
+['Первый лист', 'Sheet']
+>>> 
+>>> wb = openpyxl.Workbook()
+>>> sheet = wb.active
+>>> sheet["A1"] = "Здравствуй мир!"
+>>> sheet["A1"].value
+'Здравствуй мир!'
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/update_produce.py
+Загружаем рабочую книгу Excel...
+Проход по списку товаров на листе...
+Записан файл: updatedProduceSales.xlsx
+
+Для выхода нажмите Enter.
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/formula.py
+Записан файл: writeFormula.xlsx
+
+Для выхода нажмите Enter.
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/load_formula.py
+=SUM(A1:A2)
+500
+
+Для выхода нажмите Enter.
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/tall_wide.py
+Записан файл: dimensions.xlsx
+
+Для выхода нажмите Enter.
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/merge.py
+Записан файл: merged.xlsx
+
+Для выхода нажмите Enter.
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/unmerge.py
+Записан файл: unmerged.xlsx
+
+Для выхода нажмите Enter.Записан файл: unmerged.xlsx
+>>> 
+>>> 
+= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/freeze.py
+Записан файл: freezeExample.xlsx
+
+Для выхода нажмите Enter.= RESTART: /Users/sl/Projects/it-school/python/Year 11 2020-2021/Lesson 22/Scripts/freeze.py
+>>> 
