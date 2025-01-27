@@ -1,0 +1,19 @@
+>>> 
+>>> int(input("Num 1: ")) + int(input("Num 2: "))
+Num 1:2
+Num 2:3
+5
+>>> int.__add__(int(input("Num 1: ")), int(input("Num 2: ")))
+Num 1: 3
+Num 2: 7
+10
+>>> import operator
+>>> operator.add(int(input("Num 1: ")), int(input("Num 2: ")))
+Num 1: 2
+Num 2: 5
+7
+>>> sum([int(input("Num 1: ")), int(input("Num 2: "))])
+Num 1: 3
+Num 2: 4
+7
+>>> 

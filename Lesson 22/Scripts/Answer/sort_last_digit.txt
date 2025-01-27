@@ -1,0 +1,15 @@
+>>> nums = [128, 11, 47, 564, 2, 90]
+>>> help(nums.sort)
+Help on built-in function sort:
+
+sort(...) method of builtins.list instance
+    L.sort(key=None, reverse=False) -> None -- stable sort *IN PLACE*
+
+>>> nums.sort(key = lambda x: x%10)
+>>> nums
+[90, 11, 2, 564, 47, 128]
+>>> 
+>>> nums = [128, 11, 47, 564, 2, 90]
+>>> nums.sort(key = lambda x: str(x)[-1])
+>>> nums
+[90, 11, 2, 564, 47, 128]

@@ -1,0 +1,11 @@
+>>> import functools
+>>> lst = [1, -2, 4, -5]
+>>> functools.reduce(lambda x, y: abs(x) + abs(y), lst)
+12
+>>> lst
+[1, -2, 4, -5]
+>>> sum(map(abs, lst))
+12
+>>> 
+>>> sum(abs(x) for x in lst)
+>>> 12
