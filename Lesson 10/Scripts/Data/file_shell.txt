@@ -1,0 +1,162 @@
+>>> # слайд 10 - построчное чтение файла
+>>> 
+>>> import os
+>>> os.getcwd()
+'/Users/sl/Documents'
+>>> os.chdir('/Users/sl/Projects/it-school/python/Year 9 2023-2024/Lesson 10/Scripts/Data')
+>>> os.getcwd()
+'/Users/sl/Projects/it-school/python/Year 9 2023-2024/Lesson 10/Scripts/Data'
+>>> 
+>>> file_handler = open("poem_file.txt", encoding="UTF8")
+>>> file_handler
+<_io.TextIOWrapper name='poem_file.txt' mode='r' encoding='UTF8'>
+>>> file_handler.mode
+'r'
+>>> file_handler.readable()
+True
+>>> line = file_handler.readline()
+>>> line
+'Я знаю, что надо придумать\n'
+>>> while line:
+	line = file_handler.readline()
+	print(line)
+
+
+Я знаю, что надо придумать,
+
+Чтоб не было больше зимы,
+
+Чтоб вместо высоких сугробов
+
+Вокруг зеленели холмы.
+
+
+
+Смотрю я в стекляшку
+
+Зеленого цвета,
+
+И сразу зима
+
+Превращается в лето.
+
+
+
+- Агния Барто
+
+
+>>> file_handler.seek(0)   # установить указатель на начало файла
+0
+>>> line = file_handler.readline()
+>>> print(line, end='')
+Я знаю, что надо придумать
+>>> while line:
+	line = file_handler.readline()
+	print(line, end='')
+
+
+Я знаю, что надо придумать,
+Чтоб не было больше зимы,
+Чтоб вместо высоких сугробов
+Вокруг зеленели холмы.
+
+Смотрю я в стекляшку
+Зеленого цвета,
+И сразу зима
+Превращается в лето.
+
+- Агния Барто
+
+>>> file_handler.close()
+>>> 
+>>> # слайд 11 - чтение файла полностью за один раз
+>>> file_at_once = open("poem_file.txt", encoding="UTF8")
+>>> content = file_at_once.read()
+>>> content
+'Я знаю, что надо придумать\n\nЯ знаю, что надо придумать,\nЧтоб не было больше зимы,\nЧтоб вместо высоких сугробов\nВокруг зеленели холмы.\n\nСмотрю я в стекляшку\nЗеленого цвета,\nИ сразу зима\nПревращается в лето.\n\n- Агния Барто\n'
+>>> print(content)
+Я знаю, что надо придумать
+
+Я знаю, что надо придумать,
+Чтоб не было больше зимы,
+Чтоб вместо высоких сугробов
+Вокруг зеленели холмы.
+
+Смотрю я в стекляшку
+Зеленого цвета,
+И сразу зима
+Превращается в лето.
+
+- Агния Барто
+
+>>> file_at_once.close()
+>>> 
+>>> # слайд 12 - итерации по файлу как по упорядоченной коллекции строк
+>>> file_iter = open("poem_file.txt", encoding='UTF8')
+>>> for line in file_iter:
+	print(line, end='')
+
+	
+Я знаю, что надо придумать
+
+Я знаю, что надо придумать,
+Чтоб не было больше зимы,
+Чтоб вместо высоких сугробов
+Вокруг зеленели холмы.
+
+Смотрю я в стекляшку
+Зеленого цвета,
+И сразу зима
+Превращается в лето.
+
+- Агния Барто
+
+>>> file_iter.close()
+>>> 
+>>> # слайд 13 - чтение файла в список
+>>> file_list = open("poem_file.txt", encoding="UTF8")
+>>> lines = file_list.readlines()
+>>> lines
+['Осенняя песенка\n', '\n', 'Миновало лето, \n', 'Осень наступила. \n', 'На полях и в рощах \n', 'Пусто и уныло. \n', '\n', 'Птички улетели, \n', 'Стали дни короче, \n', 'Солнышка не видно, \n', 'Тёмны, тёмны ночи.\n', '\n', '- А. Плещеев\n']
+>>> 
+>>> for row in lines:
+	print(row, end='')
+
+	
+Осенняя песенка
+
+Миновало лето, 
+Осень наступила. 
+На полях и в рощах 
+Пусто и уныло. 
+
+Птички улетели, 
+Стали дни короче, 
+Солнышка не видно, 
+Тёмны, тёмны ночи.
+
+- А. Плещеев
+>>> file_list.close()
+>>> 
+>>> # слайд 14 - сохранение копии файла в другой файл
+>>> from tkinter import filedialog as fd
+>>> src_file_name = fd.askopenfilename()
+>>> src_file_name, type(src_file_name)
+('/Users/sl/Projects/it-school/python/Year 11 2021-2022/Lesson 8/Scripts/Data/poem_file.txt', <class 'str'>)
+>>> 
+>>> src_file = open(src_file_name, encoding="UTF8")
+>>> src_file, type(src_file)
+(<_io.TextIOWrapper name='/Users/sl/Projects/it-school/python/Year 11 2021-2022/Lesson 8/Scripts/Data/poem_file.txt' mode='r' encoding='UTF-8'>, <class '_io.TextIOWrapper'>)
+>>> 
+>>> dst_file_name = fd.asksaveasfilename()
+>>> # открыть новый файл для записи
+>>> # если файл с таким именем существует,
+>>> # то он перезапишется
+>>> dst_file = open(dst_file_name, 'w')
+>>> dst_file.write("Копия:\n")
+7
+>>> dst_file.write(src_file.read())
+177
+>>> dst_file.close()
+>>> src_file.close()
+>>> 
